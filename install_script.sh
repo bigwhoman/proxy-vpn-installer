@@ -8,11 +8,11 @@ cd /etc/v2ray
 
 wget https://github.com/v2fly/v2ray-core/releases/download/v5.1.0/v2ray-linux-64.zip
 
+unzip v2ray-linux-64.zip
+
 rm config.json
 
 wget https://raw.githubusercontent.com/bigwhoman/Ansible-vpn-installer/main/config.json
-
-unzip v2ray-linux-64.zip
 
 rm v2ray-linux-64.zip
 
