@@ -1,2 +1,2 @@
-# Ansible-vpn-installer
-Ansible playbook which installs proxy and vpn servers
+# proxy-vpn-installer
+Scripts which installs proxy and vpn servers and give clients
