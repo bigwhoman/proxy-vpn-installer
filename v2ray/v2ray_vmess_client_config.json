@@ -65,7 +65,7 @@
         "network": "ws",
         "security": "",
         "wsSettings": {
-          "path": "SERVER_WS_PATH"
+          "path": "/A_RANDOM_THING"
         }
       },
       "tag": "proxy"
