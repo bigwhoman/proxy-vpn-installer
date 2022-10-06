@@ -26,6 +26,6 @@ uuid=$(./v2ray uuid)
 
 sed -i "s/FILL ME/$uuid/" "./config.json"
 
-systemctl enable v2ray
+systemctl v2ray enable
 
-systemctl start v2ray
+systemctl v2ray start
