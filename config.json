@@ -25,8 +25,8 @@
                ],
                "certificates":[
                   {
-                     "certificateFile":"./cert.pam",
-                     "keyFile":"./key.pam"
+                     "certificateFile":"/etc/v2ray/cert.pam",
+                     "keyFile":"/etc/v2ray/key.pam"
                   }
                ]
             },

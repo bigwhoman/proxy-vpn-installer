@@ -34,6 +34,10 @@ wget https://raw.githubusercontent.com/bigwhoman/Ansible-vpn-installer/main/syst
 
 wget https://raw.githubusercontent.com/bigwhoman/Ansible-vpn-installer/main/systemd/system/v2ray@.service -P /etc/systemd/system
 
+ufw allow 443
+
+ufw allow 8080
+
 systemctl daemon-reload
 
 systemctl enable v2ray
