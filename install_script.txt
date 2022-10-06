@@ -1,5 +1,7 @@
 apt install -y wget
 
+apt install -y unzip
+
 mkdir /etc/v2ray
 
 cd /etc/v2ray
