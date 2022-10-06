@@ -10,7 +10,7 @@ wget https://github.com/v2fly/v2ray-core/releases/download/v5.1.0/v2ray-linux-64
 
 rm config.json
 
-wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/config.json
+wget https://raw.githubusercontent.com/bigwhoman/Ansible-vpn-installer/main/config.json
 
 unzip v2ray-linux-64.zip
 
@@ -30,9 +30,11 @@ uuid=$(./v2ray uuid)
 
 sed -i "s/FILL ME/$uuid/" "./config.json"
 
-wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/systemd/system/v2ray.service -P /etc/systemd/system
+wget https://raw.githubusercontent.com/bigwhoman/Ansible-vpn-installer/main/systemd/system/v2ray.service -P /etc/systemd/system
 
-wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/systemd/system/v2ray@.service -P /etc/systemd/system
+wget https://raw.githubusercontent.com/bigwhoman/Ansible-vpn-installer/main/systemd/system/v2ray@.service -P /etc/systemd/system
+
+systemctl daemon-reload
 
 systemctl enable v2ray
 
