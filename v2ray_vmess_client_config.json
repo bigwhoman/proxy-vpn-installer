@@ -4,7 +4,7 @@
       "domain:googleapis.cn": "googleapis.com"
     },
     "servers": [
-      "94.140.14.14"
+      "SERVER_IP"
     ]
   },
   "inbounds": [
@@ -46,14 +46,14 @@
       "settings": {
         "vnext": [
           {
-            "address": "",
+            "address": "SERVER_IP",
             "port": 8080,
             "users": [
               {
                 "alterId": 0,
                 "encryption": "",
                 "flow": "",
-                "id": "",
+                "id": "SERVER_UUID",
                 "level": 8,
                 "security": "chacha20-poly1305"
               }
@@ -65,7 +65,7 @@
         "network": "ws",
         "security": "",
         "wsSettings": {
-          "path": "/ws-a"
+          "path": "SERVER_WS_PATH"
         }
       },
       "tag": "proxy"
@@ -105,7 +105,7 @@
     "rules": [
       {
         "ip": [
-          "94.140.14.14"
+          "SERVER_IP"
         ],
         "outboundTag": "proxy",
         "port": "53",
