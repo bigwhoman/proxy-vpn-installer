@@ -1,0 +1,21 @@
+apt install -y wget
+
+mkdir /etc/v2ray
+
+cd /etc/v2ray
+
+wget https://github.com/v2fly/v2ray-core/releases/download/v5.1.0/v2ray-linux-64.zip
+
+unzip v2ray-linux-64.zip
+
+apt install -y jq 
+
+./v2ray tls cert | tee cert.json 
+
+jq -r .certificate[] < cert.json | tee cert.pam
+
+jq -r .key[] < cert.json | tee key.pam
+
+uuid=$(./v2ray uuid)
+
+sed -i "s/FILL ME/$uuid/" "./config.json"
