@@ -6,9 +6,11 @@ mkdir /etc/v2ray
 
 cd /etc/v2ray
 
-wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/config.json
-
 wget https://github.com/v2fly/v2ray-core/releases/download/v5.1.0/v2ray-linux-64.zip
+
+rm config.json
+
+wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/config.json
 
 unzip v2ray-linux-64.zip
 
@@ -22,14 +24,16 @@ jq -r .certificate[] < cert.json | tee cert.pam
 
 jq -r .key[] < cert.json | tee key.pam
 
+rm cert.json
+
 uuid=$(./v2ray uuid)
 
 sed -i "s/FILL ME/$uuid/" "./config.json"
 
-wget url -P /etc/systemd/system
+wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/systemd/system/v2ray.service -P /etc/systemd/system
 
-wget url -P /etc/systemd/system
+wget https://github.com/bigwhoman/Ansible-vpn-installer/blob/main/systemd/system/v2ray@.service -P /etc/systemd/system
 
-systemctl v2ray enable
+systemctl enable v2ray
 
-systemctl v2ray start
+systemctl start v2ray
