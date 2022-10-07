@@ -64,4 +64,4 @@ sed -i "s/SERVER_UUID/$uuid/" "./qr.json"
 
 apt install -y qrencode 
 
-qrencode -t ansiutf8 "$(cat qr.json)"
+#qrencode -t ansiutf8 "$(cat qr.json)"
