@@ -1,124 +1,120 @@
-{
-  "dns": {
-    "hosts": {
-      "domain:googleapis.cn": "googleapis.com"
-    },
-    "servers": [
-      "SERVER_IP"
-    ]
-  },
-  "inbounds": [
-    {
-      "listen": "127.0.0.1",
-      "port": 10808,
-      "protocol": "socks",
-      "settings": {
-        "auth": "noauth",
-        "udp": true,
-        "userLevel": 8
-      },
-      "sniffing": {
-        "destOverride": [],
-        "enabled": false
-      },
-      "tag": "socks"
-    },
-    {
-      "listen": "127.0.0.1",
-      "port": 10809,
-      "protocol": "http",
-      "settings": {
-        "userLevel": 8
-      },
-      "tag": "http"
-    }
-  ],
-  "log": {
-    "loglevel": "warning"
-  },
-  "outbounds": [
-    {
-      "mux": {
-        "concurrency": 8,
-        "enabled": false
-      },
-      "protocol": "vmess",
-      "settings": {
-        "vnext": [
-          {
-            "address": "SERVER_IP",
-            "port": 8080,
-            "users": [
-              {
-                "alterId": 0,
-                "encryption": "",
-                "flow": "",
-                "id": "SERVER_UUID",
-                "level": 8,
-                "security": "chacha20-poly1305"
-              }
-            ]
+{ 
+  "dns": { 
+    "hosts": { 
+      "domain:googleapis.cn": "googleapis.com" 
+    }, 
+    "servers": [ 
+      "SERVER_IP" 
+    ] 
+  }, 
+  "inbounds": [ 
+    { 
+      "listen": "127.0.0.1", 
+      "port": 10808, 
+      "protocol": "socks", 
+      "settings": { 
+        "auth": "noauth", 
+        "udp": true, 
+        "userLevel": 8 
+      }, 
+      "sniffing": { 
+        "destOverride": [], 
+        "enabled": false 
+      }, 
+      "tag": "socks" 
+    }, 
+    { 
+      "listen": "127.0.0.1", 
+      "port": 10809, 
+      "protocol": "http", 
+      "settings": { 
+        "userLevel": 8 
+      }, 
+      "tag": "http" 
+    } 
+  ], 
+  "log": { 
+    "loglevel": "warning" 
+  }, 
+  "outbounds": [ 
+    { 
+      "mux": { 
+        "concurrency": 8, 
+        "enabled": true 
+      }, 
+      "protocol": "vmess", 
+      "settings": { 
+        "vnext": [ 
+          { 
+            "address": "SERVER_IP", 
+            "port": 8080, 
+            "users": [ 
+              { 
+                "alterId": 0, 
+                "encryption": "", 
+                "flow": "", 
+                "id": "SERVER_UUID", 
+                "level": 8, 
+                "security": "chacha20-poly1305" 
+              } 
+            ] 
+          } 
+        ] 
+      }, 
+      "streamSettings": { 
+        "network": "ws", 
+        "security": "", 
+        "wsSettings": { 
+          "path": "/A_RANDOM_THING",
+          "headers": {
+              "Host": "SERVER_IP"
           }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "",
-        "wsSettings": {
-          "path": "/A_RANDOM_THING"
-        }
-      },
-      "tag": "proxy"
-    },
-    {
-      "protocol": "freedom",
-      "settings": {},
-      "tag": "direct"
-    },
-    {
-      "protocol": "blackhole",
-      "settings": {
-        "response": {
-          "type": "http"
-        }
-      },
-      "tag": "block"
-    }
-  ],
-  "policy": {
-    "levels": {
-      "8": {
-        "connIdle": 300,
-        "downlinkOnly": 1,
-        "handshake": 4,
-        "uplinkOnly": 1
+        } 
+      }, 
+      "tag": "proxy" 
+    }, 
+    { 
+      "protocol": "freedom", 
+      "settings": {}, 
+      "tag": "direct" 
+    }, 
+    { 
+      "protocol": "blackhole", 
+      "settings": { 
+        "response": { 
+          "type": "http" 
+        } 
+      }, 
+      "tag": "block" 
+    } 
+  ], 
+  "policy": { 
+    "levels": { 
+      "8": { 
+        "connIdle": 300, 
+        "downlinkOnly": 1, 
+        "handshake": 4, 
+        "uplinkOnly": 1 
+      } 
+    }, 
+    "system": { 
+      "statsOutboundUplink": true, 
+      "statsOutboundDownlink": true 
+    } 
+  }, 
+  "routing": { 
+    "domainMatcher": "mph", 
+    "domainStrategy": "IPIfNonMatch", 
+    "rules": [ 
+      { 
+        "ip": [ 
+           "SERVER_IP"
+        ], 
+        "outboundTag": "proxy", 
+        "port": "53", 
+        "type": "field" 
       }
-    },
-    "system": {
-      "statsOutboundUplink": true,
-      "statsOutboundDownlink": true
-    }
-  },
-  "routing": {
-    "domainMatcher": "mph",
-    "domainStrategy": "IPIfNonMatch",
-    "rules": [
-      {
-        "ip": [
-          "SERVER_IP"
-        ],
-        "outboundTag": "proxy",
-        "port": "53",
-        "type": "field"
-      },
-      {
-        "ip": [
-          "geoip:private"
-        ],
-        "outboundTag": "direct",
-        "type": "field"
-      }
-    ]
-  },
-  "stats": {}
+    ] 
+  }, 
+  "stats": {} 
 }
